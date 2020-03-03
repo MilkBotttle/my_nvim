@@ -1,0 +1,20 @@
+#!/bin/bash
+echo "Download nvim.appimage ..."
+wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage 2>/dev/null || curl --connect-timeout 3 -O https://github.com/neovim/neovim/releases/download/stable/nvim.appimage || echo "There is no network reachable use local nvim.appimage"
+
+set -e
+SCRIPT_HOME=$(cd $(dirname $0); pwd)
+
+echo Copy files
+sudo cp $SCRIPT_HOME/nvim.appimage /opt/.
+sudo chmod +x /opt/nvim.appimage
+pushd /opt/
+sudo rm -rf /opt/squashfs-root
+sudo /opt/nvim.appimage --appimage-extract
+sudo rm -rf /opt/neovim
+sudo mv squashfs-root neovim
+pushd /usr/local/bin
+sudo find /opt/neovim/ -type d -exec chmod go+rx {} \;
+sudo ln -s /opt/neovim/AppRun nvim
+pushd /usr/bin
+sudo ln -s /opt/neovim/AppRun nvim
