@@ -5,7 +5,8 @@ mkdir -p ~/.config/nvim
 [ ! -f "fzf" ] && git clone --depth 1 https://github.com/junegunn/fzf.git fzf
 [ -f "~/.config/nvim/init.vim" ] && mv ~/.config/nvim/init.vim ~/.config/nvim/init.vim.`date +%F_%R`
 cp  $BASEDIR/init.vim ~/.config/nvim/.
-cp -r $BASEDIR/plugins/autoload ~/.config/nvim
-cp -r $BASEDIR/plugins/plugged ~/.config/nvim
+[ -f "$BASEDIR/plugins/autoload"  ] && cp -r $BASEDIR/plugins/autoload ~/.config/nvim
+[ -f "$BASEDIR/plugins/plugged" ] && cp -r $BASEDIR/plugins/plugged ~/.config/nvim
+[ ! -f "$BASEDIR/plugins" ] && curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 cp -r $BASEDIR/fzf ~/.fzf
 ~/.fzf/install --all
