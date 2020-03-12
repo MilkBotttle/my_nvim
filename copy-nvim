@@ -1,9 +1,10 @@
 #!/bin/bash
 set -e
-sudo mkdir -p plugins
+mkdir -p plugins
 sudo cp ~/.config/nvim/init.vim .
 sudo cp -a ~/.fzf fzf
-sudo cp -a ~/.config/nvim/plugged ~/.config/nvim/autoload ./plugins
+sudo cp -a ~/.config/nvim/plugged
+sudo cp -a ~/.config/nvim/autoload ./plugins
 
 
 

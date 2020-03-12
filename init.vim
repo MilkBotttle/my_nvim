@@ -6,7 +6,7 @@ set nocp
 call plug#begin('~/.config/nvim/plugged')
 " Normal Plug
 Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/async.vim'
+"Plug 'prabirshrestha/async.vim'
 Plug 'lepture/vim-jinja'
 Plug 'prabirshrestha/asyncomplete-buffer.vim'
 Plug 'vim-scripts/AutoComplPop'
@@ -60,9 +60,9 @@ autocmd BufNewFile,BufRead * set ts=4 et sw=4 sts=4
 "Key bind ,ne - NERDTree
 let mapleader = ","
 
-nnoremap <A-n> :NERDTreeToggle<CR>
-inoremap <A-n> <Esc>:NERDTreeToggle<CR>i
-nnoremap <A-\> :IndentLinesToggle<CR>
+nnoremap <M-n> :NERDTreeToggle<CR>
+inoremap <M-n> <Esc>:NERDTreeToggle<CR>i
+nnoremap <M-\> :IndentLinesToggle<CR>
 noremap <F4> :set hlsearch! hlsearch?<CR>
 hi Search ctermbg=26 guifg=#005fd7
 "Key bind tab controll
@@ -71,14 +71,9 @@ nnoremap <S-Tab> <<
 " for insert mode
 inoremap <S-Tab> <C-d>
 " for fzf
-nnoremap <C-p> :Files<CR>
-
-let mapleader=","
+nnoremap <M-p> :Files<CR>
 
 " easymotion
-nmap  / <Plug>(easymotion-sn)
-nmap  n <Plug>(easymotion-next)
-nmap  N <Plug>(easymotion-prev)
 let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 let g:EasyMotion_move_highlight = 0
 let g:AutoPairsShortcutToggle = ''
@@ -87,26 +82,22 @@ let g:AutoPairsShortcutJump = ''
 nmap - <Plug>(choosewin)
 let g:choosewin_overlay_enable = 0
 
-nnoremap <A-r>   :source ~/.config/nvim/init.vim<cr>:echo "Reload nvim config"<cr>
-nnoremap <A-e>   <Esc>:sp ~/.config/nvim/init.vim<cr>
+nnoremap <M-r>   :source ~/.config/nvim/init.vim<cr>:echo "Reload nvim config"<cr>
+nnoremap <M-e>   <Esc>:sp ~/.config/nvim/init.vim<cr>
 
-" for ag
-nnoremap <A-i> :Ag<cr>
-nnoremap <A-o> :Buffers<cr>
+" for aj
+nnoremap <M-i> :Rg<cr>
 " for Ansible
 let g:ansible_options = {'ignore_blank_lines': 0}
 let g:ansible_options = {'documentation_mapping': '<C-k>'}
 " register
 " you can copy the register value by <"-[register_code]>
-inoremap <A-g> <C-o>:register<cr>
-nnoremap <A-g> :register<cr>
+" inoremap <C-g> <C-o>:register<cr>
+" nnoremap <C-g> :register<cr>
 
 " save
-inoremap <A-s> <Esc>:w<cr>a
-nnoremap <A-s> :w<cr>
-" quick retab
-nnoremap <A-t>   :set expandtab<cr>:retab<cr>:echo "Replace all tab to spaces"<cr>
-
+inoremap <M-s> <Esc>:w<cr>a
+nnoremap <M-s> :w<cr>
 
 " map to nop
 map <C-q> <Nop>
@@ -115,12 +106,6 @@ let g:asyncomplete_auto_popup = 1
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
-call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-    \ 'name': 'buffer',
-    \ 'whitelist': ['*'],
-    \ 'blacklist': ['go'],
-    \ 'completor': function('asyncomplete#sources#buffer#completor'),
-    \ 'config': {
-    \    'max_buffer_size': 5000000,
-    \  },
-    \ }))
+
+
+
