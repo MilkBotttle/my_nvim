@@ -21,6 +21,12 @@ Plug 't9md/vim-choosewin'
 Plug 'easymotion/vim-easymotion'
 Plug 'jiangmiao/auto-pairs'
 
+" plug vim markdown, tabular must before vim-markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'elzr/vim-json'
+Plug 'cespare/vim-toml'
+
 call plug#end()
 
 filetype plugin indent off
@@ -86,7 +92,7 @@ nnoremap <M-r>   :source ~/.config/nvim/init.vim<cr>:echo "Reload nvim config"<c
 nnoremap <M-e>   <Esc>:sp ~/.config/nvim/init.vim<cr>
 
 " for aj
-nnoremap <M-i> :Rg<cr>
+nnoremap <M-i> :Ag<cr>
 " for Ansible
 let g:ansible_options = {'ignore_blank_lines': 0}
 let g:ansible_options = {'documentation_mapping': '<C-k>'}
@@ -107,5 +113,12 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 
+" vim markdown
+" let g:vim_markdown_no_default_key_mappings = 1
+let g:vim_markdown_toc_autofit = 1
+let g:vim_markdown_math = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_toml_frontmatter = 1
+let g:vim_markdown_json_frontmatter = 1
 
 

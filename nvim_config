@@ -2,6 +2,7 @@
 set -e
 BASEDIR=$(dirname "$0")
 mkdir -p ~/.config/nvim
+rm -rf fzf
 [ ! -f "fzf" ] && git clone --depth 1 https://github.com/junegunn/fzf.git fzf
 [ -f "~/.config/nvim/init.vim" ] && mv ~/.config/nvim/init.vim ~/.config/nvim/init.vim.`date +%F_%R`
 cp  $BASEDIR/init.vim ~/.config/nvim/.

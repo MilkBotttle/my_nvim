@@ -1,7 +1,18 @@
-#!/bin/bash 
+#!/bin/bash
+
 set -e
-echo "Download nvim.appimage ..."
-wget https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+source /etc/os-release
+
+if [ $ID = 'ubuntu' ]; then
+    echo "Download nvim.appimage ..."
+    wget https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+fi
+
+if [ $ID = 'rhel' ] || [ $ID = 'centos' ]; then
+    echo "Download nvim.appimage ..."
+    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+fi
+
 SCRIPT_HOME=$(cd $(dirname $0); pwd)
 
 echo Copy files
