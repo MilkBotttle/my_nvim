@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+source /etc/os-release
 BASEDIR=$(dirname "$0")
 mkdir -p ~/.config/nvim
 rm -rf fzf
@@ -8,7 +9,14 @@ rm -rf fzf
 cp  $BASEDIR/init.vim ~/.config/nvim/.
 [ -f "$BASEDIR/plugins/autoload"  ] && cp -r $BASEDIR/plugins/autoload ~/.config/nvim
 [ -f "$BASEDIR/plugins/plugged" ] && cp -r $BASEDIR/plugins/plugged ~/.config/nvim
-[ ! -f "$BASEDIR/plugins" ] && curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+if [ $ID = 'ubuntu' ]; then
+    [ ! -f "$BASEDIR/plugins" ] && mkdir -p ~/.config/nvim/autoload/plug.vim && wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
+if [ $ID = 'centos' ] || [ $ID = 'rhel' ];then
+    [ ! -f "$BASEDIR/plugins" ] && curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
+
 cp -r $BASEDIR/fzf ~/.fzf
 ~/.fzf/install --all
 nvim +PlugInstall +qa
